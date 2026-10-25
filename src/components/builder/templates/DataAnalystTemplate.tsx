@@ -246,7 +246,7 @@ export function DataAnalystTemplate({
                 <div key={edu.id} className="resume-entry flex justify-between items-baseline">
                   <div>
                     <span className={`font-bold text-slate-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>{edu.degree}</span>
-                    <span className={`text-slate-700 ${isMiniPreview ? 'text-[6.5px]' : 'text-[12.5px]'}`}> — {edu.institution}</span>
+                    <span className={`text-slate-700 ${isMiniPreview ? 'text-[6.5px]' : 'text-[12.5px]'}`}>, {edu.institution}</span>
                     {edu.gpa && (
                       <span className={`text-blue-800 font-semibold ml-1 ${isMiniPreview ? 'text-[6px]' : 'text-[12px]'}`}>
                         (GPA: {edu.gpa})

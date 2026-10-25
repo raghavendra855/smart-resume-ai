@@ -45,6 +45,8 @@ export default function ResumeBuilderPage() {
     updateCertifications,
     setTemplateId,
     setCandidateType,
+    resetToSampleResume,
+    loadFresherSample,
   } = useResume();
 
   const [currentStep, setCurrentStep] = useState<number>(() => {
@@ -515,6 +517,22 @@ export default function ResumeBuilderPage() {
               <span>Fresher / Graduate</span>
             </button>
           </div>
+          <button
+            id="btn-load-sample-data"
+            type="button"
+            onClick={() => {
+              if (resumeData.candidateType === 'fresher') {
+                loadFresherSample();
+              } else {
+                resetToSampleResume();
+              }
+            }}
+            className="px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer text-[var(--accent)] hover:bg-[var(--accent)]/10 border border-[var(--accent)]/30 bg-[var(--bg-secondary)] shadow-sm"
+            title="Fill in rich sample resume data to preview templates immediately"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Load Sample Data</span>
+          </button>
         </div>
       </div>
 

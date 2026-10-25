@@ -6,11 +6,6 @@ import {
   hasContactInfo,
   formatUrl,
   cleanDomain,
-  hasSkillsData,
-  hasExperienceData,
-  hasEducationData,
-  hasProjectsData,
-  hasCertificationsData,
   LinkedinIcon,
 } from './templateUtils';
 import { Mail, Phone, MapPin, Globe } from 'lucide-react';
@@ -22,8 +17,7 @@ export function OliviaWilsonBlushTemplate({
   data: ResumeData;
   isMiniPreview?: boolean;
 }) {
-  const { personalInfo, summary, skills, experience, education, projects, certifications, candidateType } = data;
-  const isFresher = candidateType === 'fresher';
+  const { personalInfo, summary, skills, experience, education, projects, certifications } = data;
 
   const validExp = (experience || []).filter((e) => e.role?.trim() || e.company?.trim());
   const validEdu = (education || []).filter((e) => e.degree?.trim() || e.institution?.trim());
@@ -43,26 +37,26 @@ export function OliviaWilsonBlushTemplate({
 
   return (
     <div
-      className={`w-full bg-white text-neutral-800 select-text leading-normal flex min-h-[800px] ${
-        isMiniPreview ? 'text-[7px] leading-tight' : 'text-[13px]'
+      className={`w-full bg-white text-neutral-800 select-text leading-normal flex flex-1 min-h-full ${
+        isMiniPreview ? 'text-[7px] leading-tight' : 'text-[14px]'
       }`}
       style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
     >
-      {/* 1. LEFT COLUMN: SOFT BLUSH PINK SIDEBAR (~40%) */}
+      {/* 1. LEFT COLUMN: SOFT BLUSH PINK SIDEBAR (~38%) */}
       <div
-        className={`w-[40%] bg-[#f2dcde] text-neutral-800 flex flex-col ${
-          isMiniPreview ? 'p-3' : 'p-6 sm:p-8'
+        className={`w-[38%] bg-[#f2dcde] text-neutral-800 flex flex-col justify-start shrink-0 min-w-0 ${
+          isMiniPreview ? 'p-3 space-y-3' : 'p-7 sm:p-8 space-y-6'
         }`}
       >
         {/* FRAMED RECTANGULAR PORTRAIT PHOTO */}
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-2">
           <div
             className={`bg-white p-2 shadow-sm border border-neutral-200 ${
               isMiniPreview ? 'w-16 h-20 p-1' : 'w-36 h-44 sm:w-40 sm:h-48'
             }`}
           >
             <div className="w-full h-full bg-neutral-100 border border-neutral-300 flex flex-col items-center justify-center text-neutral-500 font-serif overflow-hidden">
-              <span className={`font-serif italic ${isMiniPreview ? 'text-xs' : 'text-2xl'}`}>
+              <span className={`font-serif italic ${isMiniPreview ? 'text-xs' : 'text-3xl'}`}>
                 {initials}
               </span>
             </div>
@@ -71,11 +65,11 @@ export function OliviaWilsonBlushTemplate({
 
         {/* SECTION: ABOUT ME */}
         {summary && (
-          <section className="mb-6 resume-section">
+          <section className="mb-6 resume-section min-w-0">
             <div className="bg-white px-3 py-1.5 text-center font-bold uppercase tracking-[0.2em] text-neutral-900 shadow-xs mb-3">
-              <span className={isMiniPreview ? 'text-[6px]' : 'text-[13.5px]'}>ABOUT ME</span>
+              <span className={isMiniPreview ? 'text-[6px]' : 'text-[15px]'}>ABOUT ME</span>
             </div>
-            <p className={`text-neutral-700 leading-relaxed text-center ${isMiniPreview ? 'text-[5.5px]' : 'text-[12.5px]'}`}>
+            <p className={`text-neutral-700 leading-[1.65] text-center break-words [overflow-wrap:anywhere] ${isMiniPreview ? 'text-[5.5px]' : 'text-[14px]'}`}>
               {summary}
             </p>
           </section>
@@ -83,28 +77,28 @@ export function OliviaWilsonBlushTemplate({
 
         {/* SECTION: CONTACT */}
         {hasContactInfo(personalInfo) && (
-          <section className="mb-6 resume-section">
+          <section className="mb-6 resume-section min-w-0">
             <div className="bg-white px-3 py-1.5 text-center font-bold uppercase tracking-[0.2em] text-neutral-900 shadow-xs mb-3">
-              <span className={isMiniPreview ? 'text-[6px]' : 'text-[13.5px]'}>CONTACT</span>
+              <span className={isMiniPreview ? 'text-[6px]' : 'text-[15px]'}>CONTACT</span>
             </div>
-            <div className={`space-y-2 text-neutral-700 ${isMiniPreview ? 'space-y-1 text-[5.5px]' : 'text-[12.5px]'}`}>
+            <div className={`space-y-2.5 text-neutral-800 ${isMiniPreview ? 'space-y-1 text-[5.5px]' : 'text-[13px]'}`}>
               {personalInfo.phone && (
-                <div className="flex items-center gap-2">
-                  <Phone className={`shrink-0 text-[#9c6668] ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
-                  <span>{personalInfo.phone}</span>
+                <div className="flex items-center gap-2 min-w-0">
+                  <Phone className={`shrink-0 text-[#9c6668] ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
+                  <span className="truncate">{personalInfo.phone}</span>
                 </div>
               )}
               {personalInfo.email && (
-                <div className="flex items-center gap-2">
-                  <Mail className={`shrink-0 text-[#9c6668] ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                <div className="flex items-center gap-2 min-w-0">
+                  <Mail className={`shrink-0 text-[#9c6668] ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                   <a href={`mailto:${personalInfo.email}`} className="break-all hover:text-black">
                     {personalInfo.email}
                   </a>
                 </div>
               )}
               {personalInfo.portfolio && (
-                <div className="flex items-center gap-2">
-                  <Globe className={`shrink-0 text-[#9c6668] ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                <div className="flex items-center gap-2 min-w-0">
+                  <Globe className={`shrink-0 text-[#9c6668] ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                   <a
                     href={formatUrl(personalInfo.portfolio)}
                     target="_blank"
@@ -116,14 +110,14 @@ export function OliviaWilsonBlushTemplate({
                 </div>
               )}
               {personalInfo.location && (
-                <div className="flex items-start gap-2">
-                  <MapPin className={`shrink-0 text-[#9c6668] mt-0.5 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                <div className="flex items-start gap-2 min-w-0">
+                  <MapPin className={`shrink-0 text-[#9c6668] mt-0.5 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                   <span className="break-words">{personalInfo.location}</span>
                 </div>
               )}
               {personalInfo.linkedin && (
-                <div className="flex items-center gap-2">
-                  <LinkedinIcon className={`shrink-0 text-[#9c6668] ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                <div className="flex items-center gap-2 min-w-0">
+                  <LinkedinIcon className={`shrink-0 text-[#9c6668] ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                   <a
                     href={formatUrl(personalInfo.linkedin)}
                     target="_blank"
@@ -140,15 +134,15 @@ export function OliviaWilsonBlushTemplate({
 
         {/* SECTION: SKILLS */}
         {allSkills.length > 0 && (
-          <section className="mb-6 resume-section">
+          <section className="mb-6 resume-section min-w-0">
             <div className="bg-white px-3 py-1.5 text-center font-bold uppercase tracking-[0.2em] text-neutral-900 shadow-xs mb-3">
-              <span className={isMiniPreview ? 'text-[6px]' : 'text-[13.5px]'}>SKILLS</span>
+              <span className={isMiniPreview ? 'text-[6px]' : 'text-[15px]'}>SKILLS</span>
             </div>
-            <ul className={`space-y-1.5 text-neutral-700 ${isMiniPreview ? 'space-y-0.5 text-[5.5px]' : 'text-[12.5px]'}`}>
+            <ul className={`space-y-2 text-neutral-800 ${isMiniPreview ? 'space-y-0.5 text-[5.5px]' : 'text-[13.5px]'}`}>
               {allSkills.map((s, idx) => (
-                <li key={idx} className="flex items-start gap-1.5">
-                  <span className="text-[#9c6668]">•</span>
-                  <span>{s}</span>
+                <li key={idx} className="flex items-start gap-2">
+                  <span className="text-[#9c6668] font-bold">•</span>
+                  <span className="break-words [overflow-wrap:anywhere] min-w-0">{s}</span>
                 </li>
               ))}
             </ul>
@@ -157,15 +151,15 @@ export function OliviaWilsonBlushTemplate({
 
         {/* SECTION: CERTIFICATIONS */}
         {validCerts.length > 0 && (
-          <section className="resume-section">
+          <section className="resume-section min-w-0">
             <div className="bg-white px-3 py-1.5 text-center font-bold uppercase tracking-[0.2em] text-neutral-900 shadow-xs mb-3">
-              <span className={isMiniPreview ? 'text-[6px]' : 'text-[13.5px]'}>CERTIFICATES</span>
+              <span className={isMiniPreview ? 'text-[6px]' : 'text-[15px]'}>CERTIFICATES</span>
             </div>
-            <ul className={`space-y-2 text-neutral-700 ${isMiniPreview ? 'space-y-1 text-[5.5px]' : 'text-[12.5px]'}`}>
+            <ul className={`space-y-2.5 text-neutral-800 ${isMiniPreview ? 'space-y-1 text-[5.5px]' : 'text-[13px]'}`}>
               {validCerts.map((c) => (
-                <li key={c.id} className="resume-entry">
-                  <p className="font-semibold text-neutral-900">• {c.name}</p>
-                  <p className={`text-neutral-500 pl-2 ${isMiniPreview ? 'text-[5px]' : 'text-[11.5px]'}`}>{c.issuer} {c.date ? `(${c.date})` : ''}</p>
+                <li key={c.id} className="resume-entry min-w-0">
+                  <p className="font-semibold text-neutral-900 break-words">• {c.name}</p>
+                  <p className={`text-neutral-600 pl-3 ${isMiniPreview ? 'text-[5px]' : 'text-[12px]'}`}>{c.issuer} {c.date ? `(${c.date})` : ''}</p>
                 </li>
               ))}
             </ul>
@@ -173,17 +167,17 @@ export function OliviaWilsonBlushTemplate({
         )}
       </div>
 
-      {/* 2. RIGHT COLUMN: CRISP WHITE BACKGROUND WITH BLUSH BARS (~60%) */}
+      {/* 2. RIGHT COLUMN: CRISP WHITE BACKGROUND WITH BLUSH BARS (~62%) */}
       <div
-        className={`w-[60%] bg-white text-neutral-800 flex flex-col ${
-          isMiniPreview ? 'p-3 pl-4' : 'p-6 sm:p-8 pl-8 sm:pl-10'
+        className={`w-[62%] flex-1 bg-white text-neutral-800 flex flex-col justify-start min-w-0 ${
+          isMiniPreview ? 'p-3 pl-4 space-y-3' : 'p-7 sm:p-8 pl-8 sm:pl-10 space-y-6'
         }`}
       >
         {/* HEADER: Calligraphy Script First Name + Sans Last Name */}
-        <header className={`mb-6 ${isMiniPreview ? 'mb-3' : ''}`}>
+        <header className={`mb-4 shrink-0 ${isMiniPreview ? 'mb-2' : ''}`}>
           <h1
-            className={`leading-none mb-1 ${
-              isMiniPreview ? 'text-2xl' : 'text-5xl sm:text-6xl'
+            className={`leading-none mb-1 break-words ${
+              isMiniPreview ? 'text-2xl' : 'text-5xl sm:text-[54px]'
             }`}
           >
             <span
@@ -194,18 +188,18 @@ export function OliviaWilsonBlushTemplate({
             </span>
             <span
               className={`block font-bold tracking-[0.3em] uppercase text-neutral-900 mt-1 ${
-                isMiniPreview ? 'text-[11px]' : 'text-xl sm:text-2xl'
+                isMiniPreview ? 'text-[11px]' : 'text-xl sm:text-[24px]'
               }`}
             >
               {lastName}
             </span>
           </h1>
 
-          <div className="border-b border-neutral-300 my-2" />
+          <div className="border-b border-neutral-300 my-2.5" />
 
           <p
-            className={`font-sans tracking-[0.25em] uppercase text-neutral-600 font-medium ${
-              isMiniPreview ? 'text-[5.5px]' : 'text-sm'
+            className={`font-sans tracking-[0.25em] uppercase text-neutral-600 font-semibold break-words ${
+              isMiniPreview ? 'text-[5.5px]' : 'text-[14.5px]'
             }`}
           >
             {personalInfo.headline || 'DESIGNER AND ARCHITECT'}
@@ -214,27 +208,27 @@ export function OliviaWilsonBlushTemplate({
 
         {/* WORK EXPERIENCE */}
         {validExp.length > 0 && (
-          <section className="mb-6 resume-section">
-            <div className="bg-[#eed6d8] px-3 py-1 font-bold uppercase tracking-[0.2em] text-neutral-900 mb-3">
-              <span className={isMiniPreview ? 'text-[6px]' : 'text-[13.5px]'}>WORK EXPERIENCE</span>
+          <section className="mb-6 resume-section min-w-0">
+            <div className="bg-[#eed6d8] px-3.5 py-1.5 font-bold uppercase tracking-[0.2em] text-neutral-900 mb-3.5">
+              <span className={isMiniPreview ? 'text-[6px]' : 'text-[15px]'}>WORK EXPERIENCE</span>
             </div>
             <div className="space-y-4">
               {validExp.map((exp) => (
-                <div key={exp.id} className="resume-entry">
-                  <h3 className={`font-bold uppercase tracking-wider text-neutral-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>
+                <div key={exp.id} className="resume-entry min-w-0">
+                  <h3 className={`font-bold uppercase tracking-wider text-neutral-900 break-words ${isMiniPreview ? 'text-[7px]' : 'text-[15.5px]'}`}>
                     {exp.role}
                   </h3>
-                  <p className={`text-neutral-700 font-medium ${isMiniPreview ? 'text-[6px]' : 'text-[13px]'}`}>
+                  <p className={`text-neutral-700 font-semibold mt-0.5 break-words ${isMiniPreview ? 'text-[6px]' : 'text-[14px]'}`}>
                     {exp.company}
                   </p>
-                  <p className={`text-neutral-500 mb-1.5 ${isMiniPreview ? 'text-[5px]' : 'text-[12px]'}`}>
+                  <p className={`text-neutral-500 mb-2 ${isMiniPreview ? 'text-[5px]' : 'text-[13px]'}`}>
                     {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                     {exp.location ? ` | ${exp.location}` : ''}
                   </p>
                   {exp.bulletPoints && exp.bulletPoints.length > 0 && (
-                    <ul className={`space-y-1 text-neutral-600 ${isMiniPreview ? 'text-[5px]' : 'text-[13px]'}`}>
+                    <ul className={`space-y-1.5 text-neutral-700 ${isMiniPreview ? 'text-[5px]' : 'text-[14px]'}`}>
                       {exp.bulletPoints.map((bp, bIdx) => (
-                        <li key={bIdx} className="leading-relaxed">
+                        <li key={bIdx} className="leading-[1.6] break-words [overflow-wrap:anywhere] min-w-0">
                           {bp}
                         </li>
                       ))}
@@ -248,20 +242,20 @@ export function OliviaWilsonBlushTemplate({
 
         {/* EDUCATION */}
         {validEdu.length > 0 && (
-          <section className="mb-6 resume-section">
-            <div className="bg-[#eed6d8] px-3 py-1 font-bold uppercase tracking-[0.2em] text-neutral-900 mb-3">
-              <span className={isMiniPreview ? 'text-[6px]' : 'text-[13.5px]'}>EDUCATION</span>
+          <section className="mb-6 resume-section min-w-0">
+            <div className="bg-[#eed6d8] px-3.5 py-1.5 font-bold uppercase tracking-[0.2em] text-neutral-900 mb-3.5">
+              <span className={isMiniPreview ? 'text-[6px]' : 'text-[15px]'}>EDUCATION</span>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3.5">
               {validEdu.map((edu) => (
-                <div key={edu.id} className="resume-entry">
-                  <h3 className={`font-bold uppercase tracking-wider text-neutral-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>
+                <div key={edu.id} className="resume-entry min-w-0">
+                  <h3 className={`font-bold uppercase tracking-wider text-neutral-900 break-words ${isMiniPreview ? 'text-[7px]' : 'text-[15.5px]'}`}>
                     {edu.degree}
                   </h3>
-                  <p className={`text-neutral-700 ${isMiniPreview ? 'text-[6px]' : 'text-[13px]'}`}>
+                  <p className={`text-neutral-700 mt-0.5 break-words ${isMiniPreview ? 'text-[6px]' : 'text-[14px]'}`}>
                     {edu.institution}
                   </p>
-                  <p className={`text-neutral-500 ${isMiniPreview ? 'text-[5px]' : 'text-[12px]'}`}>
+                  <p className={`text-neutral-500 ${isMiniPreview ? 'text-[5px]' : 'text-[13px]'}`}>
                     {edu.graduationYear}
                     {edu.gpa ? ` | GPA: ${edu.gpa}` : ''}
                   </p>
@@ -273,22 +267,22 @@ export function OliviaWilsonBlushTemplate({
 
         {/* PROJECTS */}
         {validProj.length > 0 && (
-          <section className="resume-section">
-            <div className="bg-[#eed6d8] px-3 py-1 font-bold uppercase tracking-[0.2em] text-neutral-900 mb-3">
-              <span className={isMiniPreview ? 'text-[6px]' : 'text-[13.5px]'}>PROJECTS</span>
+          <section className="resume-section min-w-0">
+            <div className="bg-[#eed6d8] px-3.5 py-1.5 font-bold uppercase tracking-[0.2em] text-neutral-900 mb-3.5">
+              <span className={isMiniPreview ? 'text-[6px]' : 'text-[15px]'}>PROJECTS</span>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3.5">
               {validProj.map((proj) => (
-                <div key={proj.id} className="resume-entry">
-                  <h3 className={`font-bold uppercase tracking-wider text-neutral-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>
+                <div key={proj.id} className="resume-entry min-w-0">
+                  <h3 className={`font-bold uppercase tracking-wider text-neutral-900 break-words ${isMiniPreview ? 'text-[7px]' : 'text-[15.5px]'}`}>
                     {proj.title}
                   </h3>
                   {proj.technologies && proj.technologies.length > 0 && (
-                    <p className={`text-neutral-500 text-[12px] ${isMiniPreview ? 'text-[5px]' : ''}`}>
+                    <p className={`text-neutral-500 mb-1 break-words ${isMiniPreview ? 'text-[5px]' : 'text-[12.5px]'}`}>
                       {proj.technologies.join(', ')}
                     </p>
                   )}
-                  <p className={`text-neutral-600 mt-0.5 leading-relaxed ${isMiniPreview ? 'text-[5px]' : 'text-[13px]'}`}>
+                  <p className={`text-neutral-700 mt-0.5 leading-[1.6] break-words [overflow-wrap:anywhere] min-w-0 ${isMiniPreview ? 'text-[5px]' : 'text-[14px]'}`}>
                     {proj.description}
                   </p>
                 </div>

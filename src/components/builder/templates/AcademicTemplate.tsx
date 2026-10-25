@@ -252,7 +252,7 @@ export function AcademicTemplate({
               {validCerts.map((cert) => (
                 <div key={cert.id} className="resume-entry flex justify-between items-baseline">
                   <span>
-                    <strong>{cert.name}</strong> — {cert.issuer}
+                    <strong>{cert.name}</strong> - {cert.issuer}
                   </span>
                   <span className={`text-slate-600 ${isMiniPreview ? 'text-[6px]' : 'text-[12px]'}`}>{cert.date}</span>
                 </div>

@@ -6,11 +6,6 @@ import {
   hasContactInfo,
   formatUrl,
   cleanDomain,
-  hasSkillsData,
-  hasExperienceData,
-  hasEducationData,
-  hasProjectsData,
-  hasCertificationsData,
   LinkedinIcon,
 } from './templateUtils';
 import { Mail, Phone, MapPin, Globe, ArrowUpRight } from 'lucide-react';
@@ -22,8 +17,7 @@ export function NickKoeTemplate({
   data: ResumeData;
   isMiniPreview?: boolean;
 }) {
-  const { personalInfo, summary, skills, experience, education, projects, certifications, candidateType } = data;
-  const isFresher = candidateType === 'fresher';
+  const { personalInfo, summary, skills, experience, education, projects, certifications } = data;
 
   const validExp = (experience || []).filter((e) => e.role?.trim() || e.company?.trim());
   const validEdu = (education || []).filter((e) => e.degree?.trim() || e.institution?.trim());
@@ -35,35 +29,35 @@ export function NickKoeTemplate({
 
   return (
     <div
-      className={`w-full bg-white text-neutral-800 select-text leading-normal ${
-        isMiniPreview ? 'text-[7px] leading-tight p-3' : 'text-[13px] p-8 sm:p-10'
+      className={`w-full bg-white text-neutral-800 select-text leading-normal flex-1 flex flex-col min-h-full ${
+        isMiniPreview ? 'text-[7px] leading-tight p-3' : 'text-[14px] p-8 sm:p-10'
       }`}
       style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}
     >
       {/* HEADER: Nick Koe Top Section with Teal Accent Block + Aligned Contact Stack */}
-      <header className={`border-b border-neutral-300 pb-4 mb-4 ${isMiniPreview ? 'pb-2 mb-2' : ''}`}>
+      <header className={`border-b border-neutral-300 pb-5 mb-5 shrink-0 ${isMiniPreview ? 'pb-2 mb-2' : ''}`}>
         <div className="flex justify-between items-start gap-4">
           {/* Top Left: Teal block + Name + Subtitle + Summary */}
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <div className="flex items-start gap-3">
               {/* Deep Teal Accent Block matching reference */}
               <div
-                className={`bg-[#135274] shrink-0 mt-0.5 ${
-                  isMiniPreview ? 'w-2 h-4' : 'w-4 h-8'
+                className={`bg-[#135274] shrink-0 mt-1 ${
+                  isMiniPreview ? 'w-2 h-4' : 'w-4 h-9'
                 }`}
               />
-              <div>
+              <div className="min-w-0">
                 <h1
-                  className={`font-semibold text-neutral-900 tracking-tight leading-tight ${
-                    isMiniPreview ? 'text-[11px]' : 'text-2xl sm:text-3xl'
+                  className={`font-semibold text-neutral-900 tracking-tight leading-tight break-words ${
+                    isMiniPreview ? 'text-[11px]' : 'text-3xl sm:text-[34px]'
                   }`}
                   style={{ fontFamily: 'Georgia, serif' }}
                 >
                   {personalInfo.fullName || 'Nick Koe'}
                 </h1>
                 <p
-                  className={`font-medium text-[#2a9d8f] tracking-wide mt-0.5 ${
-                    isMiniPreview ? 'text-[6.5px]' : 'text-sm'
+                  className={`font-semibold text-[#2a9d8f] tracking-wide mt-1 break-words ${
+                    isMiniPreview ? 'text-[6.5px]' : 'text-[16px]'
                   }`}
                 >
                   {personalInfo.headline || 'Event Photographer'}
@@ -74,8 +68,8 @@ export function NickKoeTemplate({
             {/* Summary right under name matching reference */}
             {summary && (
               <p
-                className={`text-neutral-600 leading-relaxed mt-2.5 max-w-xl ${
-                  isMiniPreview ? 'text-[5.5px] mt-1' : 'text-[13px]'
+                className={`text-neutral-700 leading-[1.65] mt-3 max-w-xl break-words [overflow-wrap:anywhere] ${
+                  isMiniPreview ? 'text-[5.5px] mt-1' : 'text-[14px]'
                 }`}
               >
                 {summary}
@@ -86,54 +80,54 @@ export function NickKoeTemplate({
           {/* Top Right: Aligned Contact Stack with right-hand icons */}
           {hasContactInfo(personalInfo) && (
             <div
-              className={`shrink-0 text-right space-y-1.5 text-neutral-600 ${
-                isMiniPreview ? 'text-[5.5px] space-y-0.5' : 'text-[12.5px]'
+              className={`shrink-0 text-right space-y-2 text-neutral-700 ${
+                isMiniPreview ? 'text-[5.5px] space-y-0.5' : 'text-[13px]'
               }`}
             >
               {personalInfo.email && (
-                <div className="flex items-center justify-end gap-1.5">
-                  <a href={`mailto:${personalInfo.email}`} className="hover:text-black">
+                <div className="flex items-center justify-end gap-2">
+                  <a href={`mailto:${personalInfo.email}`} className="hover:text-black break-all">
                     {personalInfo.email}
                   </a>
-                  <Mail className={`text-[#135274] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                  <Mail className={`text-[#135274] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                 </div>
               )}
               {personalInfo.phone && (
-                <div className="flex items-center justify-end gap-1.5">
+                <div className="flex items-center justify-end gap-2">
                   <span>{personalInfo.phone}</span>
-                  <Phone className={`text-[#135274] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                  <Phone className={`text-[#135274] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                 </div>
               )}
               {personalInfo.location && (
-                <div className="flex items-center justify-end gap-1.5">
-                  <span>{personalInfo.location}</span>
-                  <MapPin className={`text-[#135274] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                <div className="flex items-center justify-end gap-2">
+                  <span className="break-words">{personalInfo.location}</span>
+                  <MapPin className={`text-[#135274] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                 </div>
               )}
               {personalInfo.portfolio && (
-                <div className="flex items-center justify-end gap-1.5">
+                <div className="flex items-center justify-end gap-2">
                   <a
                     href={formatUrl(personalInfo.portfolio)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-black"
+                    className="hover:text-black break-all"
                   >
                     {cleanDomain(personalInfo.portfolio)}
                   </a>
-                  <Globe className={`text-[#135274] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                  <Globe className={`text-[#135274] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                 </div>
               )}
               {personalInfo.linkedin && (
-                <div className="flex items-center justify-end gap-1.5">
+                <div className="flex items-center justify-end gap-2">
                   <a
                     href={formatUrl(personalInfo.linkedin)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-black"
+                    className="hover:text-black break-all"
                   >
                     {cleanDomain(personalInfo.linkedin)}
                   </a>
-                  <LinkedinIcon className={`text-[#135274] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                  <LinkedinIcon className={`text-[#135274] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                 </div>
               )}
             </div>
@@ -142,54 +136,54 @@ export function NickKoeTemplate({
       </header>
 
       {/* TWO COLUMNS */}
-      <div className="grid grid-cols-12 gap-5 sm:gap-7">
+      <div className="grid grid-cols-12 gap-6 sm:gap-8 flex-1 min-h-0">
         {/* LEFT COLUMN: ~56% (WORK EXPERIENCE, EDUCATION) */}
-        <div className="col-span-7 space-y-5">
+        <div className="col-span-7 space-y-6 min-w-0">
           {/* WORK EXPERIENCE */}
           {validExp.length > 0 && (
             <section className="resume-section">
               <h2
-                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-3 ${
-                  isMiniPreview ? 'text-[7.5px]' : 'text-[14.5px]'
+                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-3 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7.5px]' : 'text-[16px]'
                 }`}
               >
                 WORK EXPERIENCE
               </h2>
               <div className="space-y-4">
                 {validExp.map((exp) => (
-                  <div key={exp.id} className="relative pl-4 resume-entry">
+                  <div key={exp.id} className="relative pl-4 resume-entry min-w-0">
                     {/* Teal Square indicator on left edge */}
                     <div
-                      className={`absolute left-0 top-1 bg-[#2a9d8f] ${
+                      className={`absolute left-0 top-1.5 bg-[#2a9d8f] ${
                         isMiniPreview ? 'w-1.5 h-3' : 'w-2 h-4'
                       }`}
                     />
-                    <div>
+                    <div className="min-w-0">
                       <h3
-                        className={`font-semibold text-neutral-900 leading-snug ${
-                          isMiniPreview ? 'text-[7px]' : 'text-[14px]'
+                        className={`font-bold text-neutral-900 leading-snug break-words ${
+                          isMiniPreview ? 'text-[7px]' : 'text-[15.5px]'
                         }`}
                       >
                         {exp.role}
                       </h3>
-                      <div className={`flex items-center gap-1 text-neutral-700 font-medium mt-0.5 mb-1 ${isMiniPreview ? 'text-[6px]' : 'text-[13px]'}`}>
-                        <span>{exp.company}</span>
-                        <ArrowUpRight className={`text-[#2a9d8f] ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                      <div className={`flex items-center gap-1 text-neutral-700 font-semibold mt-0.5 mb-1 ${isMiniPreview ? 'text-[6px]' : 'text-[14px]'}`}>
+                        <span className="break-words">{exp.company}</span>
+                        <ArrowUpRight className={`text-[#2a9d8f] shrink-0 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
                       </div>
                       <p
-                        className={`text-[#2a9d8f] font-medium mb-1.5 ${
-                          isMiniPreview ? 'text-[5.5px]' : 'text-[12px]'
+                        className={`text-[#2a9d8f] font-medium mb-2 ${
+                          isMiniPreview ? 'text-[5.5px]' : 'text-[13px]'
                         }`}
                       >
                         {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
                         {exp.location ? ` | ${exp.location}` : ''}
                       </p>
                       {exp.bulletPoints && exp.bulletPoints.length > 0 && (
-                        <ul className={`space-y-1 text-neutral-600 ${isMiniPreview ? 'text-[5.5px]' : 'text-[13px]'}`}>
+                        <ul className={`space-y-1.5 text-neutral-700 ${isMiniPreview ? 'text-[5.5px]' : 'text-[14px]'}`}>
                           {exp.bulletPoints.map((bp, bIdx) => (
-                            <li key={bIdx} className="flex items-start gap-1.5 leading-relaxed">
-                              <span className="text-[#2a9d8f] mt-0.5">•</span>
-                              <span>{bp}</span>
+                            <li key={bIdx} className="flex items-start gap-2 leading-[1.6]">
+                              <span className="text-[#2a9d8f] mt-1 shrink-0">•</span>
+                              <span className="break-words [overflow-wrap:anywhere] min-w-0">{bp}</span>
                             </li>
                           ))}
                         </ul>
@@ -205,28 +199,28 @@ export function NickKoeTemplate({
           {validEdu.length > 0 && (
             <section className="resume-section">
               <h2
-                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-3 ${
-                  isMiniPreview ? 'text-[7.5px]' : 'text-[14.5px]'
+                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-3 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7.5px]' : 'text-[16px]'
                 }`}
               >
                 EDUCATION
               </h2>
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 {validEdu.map((edu) => (
-                  <div key={edu.id} className="relative pl-4 resume-entry">
+                  <div key={edu.id} className="relative pl-4 resume-entry min-w-0">
                     {/* Teal indicator */}
                     <div
-                      className={`absolute left-0 top-1 bg-[#2a9d8f] ${
+                      className={`absolute left-0 top-1.5 bg-[#2a9d8f] ${
                         isMiniPreview ? 'w-1.5 h-3' : 'w-2 h-4'
                       }`}
                     />
-                    <h3 className={`font-semibold text-neutral-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>
+                    <h3 className={`font-bold text-neutral-900 break-words ${isMiniPreview ? 'text-[7px]' : 'text-[15.5px]'}`}>
                       {edu.degree}
                     </h3>
-                    <p className={`text-neutral-700 ${isMiniPreview ? 'text-[6px]' : 'text-[13px]'}`}>
+                    <p className={`text-neutral-700 break-words ${isMiniPreview ? 'text-[6px]' : 'text-[13.5px]'}`}>
                       {edu.institution}
                     </p>
-                    <p className={`text-[#2a9d8f] font-medium ${isMiniPreview ? 'text-[5.5px]' : 'text-[12px]'}`}>
+                    <p className={`text-[#2a9d8f] font-medium ${isMiniPreview ? 'text-[5.5px]' : 'text-[13px]'}`}>
                       {edu.graduationYear}
                       {edu.gpa ? ` | GPA: ${edu.gpa}` : ''}
                     </p>
@@ -238,13 +232,13 @@ export function NickKoeTemplate({
         </div>
 
         {/* RIGHT COLUMN: ~44% (HARD SKILLS PILLS, SOFT SKILLS PILLS, PORTFOLIO/PROJECTS, CERTIFICATES) */}
-        <div className="col-span-5 space-y-5">
+        <div className="col-span-5 space-y-6 min-w-0">
           {/* HARD SKILLS */}
           {hardSkills.length > 0 && (
             <section className="resume-section">
               <h2
-                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-2 ${
-                  isMiniPreview ? 'text-[7.5px]' : 'text-[14.5px]'
+                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-2.5 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7.5px]' : 'text-[16px]'
                 }`}
               >
                 HARD SKILLS
@@ -254,7 +248,7 @@ export function NickKoeTemplate({
                   <span
                     key={idx}
                     className={`bg-[#135274] text-white font-medium rounded tracking-wide ${
-                      isMiniPreview ? 'text-[5px] px-1 py-0.2' : 'text-[12px] px-2.5 py-1'
+                      isMiniPreview ? 'text-[5px] px-1 py-0.2' : 'text-[12.5px] px-3 py-1'
                     }`}
                   >
                     {skill}
@@ -268,8 +262,8 @@ export function NickKoeTemplate({
           {softSkills.length > 0 && (
             <section className="resume-section">
               <h2
-                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-2 ${
-                  isMiniPreview ? 'text-[7.5px]' : 'text-[14.5px]'
+                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-2.5 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7.5px]' : 'text-[16px]'
                 }`}
               >
                 SOFT SKILLS
@@ -279,7 +273,7 @@ export function NickKoeTemplate({
                   <span
                     key={idx}
                     className={`bg-[#135274] text-white font-medium rounded tracking-wide ${
-                      isMiniPreview ? 'text-[5px] px-1 py-0.2' : 'text-[12px] px-2.5 py-1'
+                      isMiniPreview ? 'text-[5px] px-1 py-0.2' : 'text-[12.5px] px-3 py-1'
                     }`}
                   >
                     {skill}
@@ -293,17 +287,17 @@ export function NickKoeTemplate({
           {validProj.length > 0 && (
             <section className="resume-section">
               <h2
-                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-2 ${
-                  isMiniPreview ? 'text-[7.5px]' : 'text-[14.5px]'
+                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-2.5 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7.5px]' : 'text-[16px]'
                 }`}
               >
                 PORTFOLIO
               </h2>
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 {validProj.map((proj) => (
-                  <div key={proj.id} className="resume-entry">
-                    <div className={`flex items-center gap-1 font-semibold text-neutral-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>
-                      <span>{proj.title}</span>
+                  <div key={proj.id} className="resume-entry min-w-0">
+                    <div className={`flex items-center gap-1 font-bold text-neutral-900 ${isMiniPreview ? 'text-[7px]' : 'text-[15px]'}`}>
+                      <span className="break-words">{proj.title}</span>
                       {proj.link && (
                         <a
                           href={formatUrl(proj.link)}
@@ -316,19 +310,19 @@ export function NickKoeTemplate({
                       )}
                     </div>
                     {proj.link && (
-                      <p className={`text-neutral-500 mb-1 ${isMiniPreview ? 'text-[5px]' : 'text-[12px]'}`}>
+                      <p className={`text-neutral-500 mb-1 break-all ${isMiniPreview ? 'text-[5px]' : 'text-[12.5px]'}`}>
                         {cleanDomain(proj.link)}
                       </p>
                     )}
-                    <p className={`text-neutral-600 leading-relaxed ${isMiniPreview ? 'text-[5.5px]' : 'text-[13px]'}`}>
+                    <p className={`text-neutral-700 leading-[1.6] break-words [overflow-wrap:anywhere] min-w-0 ${isMiniPreview ? 'text-[5.5px]' : 'text-[14px]'}`}>
                       {proj.description}
                     </p>
                     {proj.bullets && proj.bullets.length > 0 && (
-                      <ul className={`space-y-0.5 mt-1 text-neutral-600 ${isMiniPreview ? 'text-[5px]' : 'text-[12.5px]'}`}>
+                      <ul className={`space-y-1 mt-1.5 text-neutral-700 ${isMiniPreview ? 'text-[5px]' : 'text-[13.5px]'}`}>
                         {proj.bullets.map((b, bIdx) => (
-                          <li key={bIdx} className="flex items-start gap-1">
-                            <span className="text-[#2a9d8f]">•</span>
-                            <span>{b}</span>
+                          <li key={bIdx} className="flex items-start gap-1.5 leading-[1.6]">
+                            <span className="text-[#2a9d8f] mt-1 shrink-0">•</span>
+                            <span className="break-words [overflow-wrap:anywhere] min-w-0">{b}</span>
                           </li>
                         ))}
                       </ul>
@@ -343,19 +337,19 @@ export function NickKoeTemplate({
           {validCerts.length > 0 && (
             <section className="resume-section">
               <h2
-                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-2 ${
-                  isMiniPreview ? 'text-[7.5px]' : 'text-[14.5px]'
+                className={`font-bold uppercase tracking-wider text-neutral-900 pb-1 mb-2.5 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7.5px]' : 'text-[16px]'
                 }`}
               >
                 CERTIFICATES
               </h2>
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {validCerts.map((cert) => (
-                  <div key={cert.id} className="text-neutral-700 resume-entry">
-                    <p className={`font-semibold text-neutral-800 ${isMiniPreview ? 'text-[6px]' : 'text-[13px]'}`}>
+                  <div key={cert.id} className="text-neutral-800 resume-entry min-w-0">
+                    <p className={`font-semibold text-neutral-900 break-words ${isMiniPreview ? 'text-[6px]' : 'text-[14px]'}`}>
                       {cert.name} {cert.date ? `– ${cert.date}` : ''}
                     </p>
-                    <p className={`text-neutral-500 ${isMiniPreview ? 'text-[5px]' : 'text-[12px]'}`}>
+                    <p className={`text-neutral-500 ${isMiniPreview ? 'text-[5px]' : 'text-[12.5px]'}`}>
                       {cert.issuer}
                     </p>
                   </div>

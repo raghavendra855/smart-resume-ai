@@ -17,7 +17,7 @@ import {
   INITIAL_USER_SKILLS,
   INITIAL_METRICS,
   INITIAL_ACTIVITIES,
-} from '@/lib/mockData';
+} from '@/lib/initialData';
 import { generateId } from '@/lib/utils';
 
 interface CareerContextType {

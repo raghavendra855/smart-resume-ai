@@ -3,6 +3,8 @@ import { getAuthenticatedUser } from '@/lib/userSession';
 import { UserDashboardSidebar } from '@/components/dashboard/UserDashboardSidebar';
 import { UserDashboardHeader } from '@/components/dashboard/UserDashboardHeader';
 
+export const dynamic = 'force-dynamic';
+
 export default async function UserDashboardLayout({
   children,
 }: {

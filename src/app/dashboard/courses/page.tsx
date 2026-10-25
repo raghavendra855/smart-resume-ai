@@ -327,7 +327,7 @@ export default function UserCoursesPage() {
                     </div>
                     <div className="w-full h-2 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-[var(--accent)] to-[#7C7FF2] rounded-full transition-all duration-300"
+                        className="h-full bg-[var(--accent)] rounded-full transition-all duration-300"
                         style={{ width: `${course.progressPercentage}%` }}
                       />
                     </div>

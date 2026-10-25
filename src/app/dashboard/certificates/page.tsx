@@ -79,7 +79,7 @@ export default async function UserCertificatesPage() {
 
               <div>
                 <div className="flex items-start justify-between gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[var(--accent)] via-[#7C7FF2] to-[#9496FF] text-white flex items-center justify-center shadow-lg shadow-[var(--accent)]/20 shrink-0">
+                  <div className="w-12 h-12 rounded-2xl bg-[var(--accent)] text-white flex items-center justify-center shadow-md shadow-[var(--accent)]/20 shrink-0">
                     <Award className="w-6 h-6" />
                   </div>
                   <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-bold">

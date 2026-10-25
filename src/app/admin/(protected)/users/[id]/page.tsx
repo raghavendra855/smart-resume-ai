@@ -123,7 +123,7 @@ export default function AdminUserDetailPage() {
             Back to Users List
           </Link>
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-[var(--accent)] to-[#818cf8] text-white font-black text-xl flex items-center justify-center shadow-md shadow-[var(--glow-color)] shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-[var(--accent)] text-white font-bold text-xl flex items-center justify-center shadow-sm shrink-0">
               {user.name.charAt(0).toUpperCase()}
             </div>
             <div>
@@ -179,7 +179,7 @@ export default function AdminUserDetailPage() {
             <BadgeCheck className="w-3.5 h-3.5 text-emerald-400" />
           </div>
           <div className="text-xl font-black text-[var(--text-primary)]">
-            {avgAtsScore > 0 ? `${avgAtsScore}/100` : '—'}
+            {avgAtsScore > 0 ? `${avgAtsScore}/100` : '-'}
           </div>
           <span className="text-[10px] text-[var(--text-secondary)]">Average score</span>
         </GlassCard>

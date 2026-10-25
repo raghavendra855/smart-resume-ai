@@ -840,9 +840,9 @@ export default function AssessmentRunnerPage() {
                 <div className="space-y-1.5">
                   <h3 className="text-lg font-bold text-[var(--text-primary)]">
                     {pauseReason === 'fullscreen_exit'
-                      ? 'Fullscreen Exited — Exam Paused'
+                      ? 'Fullscreen Exited: Exam Paused'
                       : pauseReason === 'tab_switch'
-                      ? 'Tab Switch Detected — Exam Paused'
+                      ? 'Tab Switch Detected: Exam Paused'
                       : 'Assessment Paused'}
                   </h3>
                   <p className="text-xs text-[var(--text-secondary)] leading-relaxed">

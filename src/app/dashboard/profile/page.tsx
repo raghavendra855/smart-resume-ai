@@ -147,7 +147,7 @@ export default function UserProfilePage() {
         {/* Left Column: Account Overview Card */}
         <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 p-6 space-y-6 h-fit">
           <div className="text-center space-y-3">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[var(--accent)] to-[#7C7FF2] text-white font-bold text-xl flex items-center justify-center mx-auto shadow-lg shadow-[var(--accent)]/20">
+            <div className="w-16 h-16 rounded-2xl bg-[var(--accent)] text-white font-bold text-xl flex items-center justify-center mx-auto shadow-md shadow-[var(--accent)]/20">
               {name ? name.charAt(0).toUpperCase() : 'U'}
             </div>
             <div>

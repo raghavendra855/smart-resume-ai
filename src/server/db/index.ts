@@ -880,37 +880,37 @@ export function registerUser(data: {
       console.log('[visitor migration error - visitors]:', e?.message);
     }
     try {
-      db.prepare('UPDATE resumes SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(userId, data.visitorId);
+      db.prepare("UPDATE resumes SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(userId, data.visitorId);
     } catch (e: any) {
       console.log('[visitor migration error - resumes]:', e?.message);
     }
     try {
-      db.prepare('UPDATE resume_analyses SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(userId, data.visitorId);
+      db.prepare("UPDATE resume_analyses SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(userId, data.visitorId);
     } catch (e: any) {
       console.log('[visitor migration error - analyses]:', e?.message);
     }
     try {
-      db.prepare('UPDATE verified_skills SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(userId, data.visitorId);
+      db.prepare("UPDATE verified_skills SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(userId, data.visitorId);
     } catch (e: any) {
       console.log('[visitor migration error - skills]:', e?.message);
     }
     try {
-      db.prepare('UPDATE assessments SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(userId, data.visitorId);
+      db.prepare("UPDATE assessments SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(userId, data.visitorId);
     } catch (e: any) {
       console.log('[visitor migration error - assessments]:', e?.message);
     }
     try {
-      db.prepare('UPDATE job_searches SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(userId, data.visitorId);
+      db.prepare("UPDATE job_searches SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(userId, data.visitorId);
     } catch (e: any) {
       console.log('[visitor migration error - searches]:', e?.message);
     }
     try {
-      db.prepare('UPDATE job_matches SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(userId, data.visitorId);
+      db.prepare("UPDATE job_matches SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(userId, data.visitorId);
     } catch (e: any) {
       console.log('[visitor migration error - matches]:', e?.message);
     }
     try {
-      db.prepare('UPDATE feedback SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(userId, data.visitorId);
+      db.prepare("UPDATE feedback SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(userId, data.visitorId);
     } catch (e: any) {
       console.log('[visitor migration error - feedback]:', e?.message);
     }
@@ -1251,13 +1251,13 @@ export function createOrUpdateUserProfile(data: {
   if (data.visitorId) {
     try {
       db.prepare('UPDATE visitors SET user_id = ? WHERE id = ? OR anonymous_id = ?').run(id, data.visitorId, data.visitorId);
-      db.prepare('UPDATE resumes SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(id, data.visitorId);
-      db.prepare('UPDATE resume_analyses SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(id, data.visitorId);
-      db.prepare('UPDATE verified_skills SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(id, data.visitorId);
-      db.prepare('UPDATE assessments SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(id, data.visitorId);
-      db.prepare('UPDATE job_searches SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(id, data.visitorId);
-      db.prepare('UPDATE job_matches SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(id, data.visitorId);
-      db.prepare('UPDATE feedback SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = "")').run(id, data.visitorId);
+      db.prepare("UPDATE resumes SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(id, data.visitorId);
+      db.prepare("UPDATE resume_analyses SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(id, data.visitorId);
+      db.prepare("UPDATE verified_skills SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(id, data.visitorId);
+      db.prepare("UPDATE assessments SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(id, data.visitorId);
+      db.prepare("UPDATE job_searches SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(id, data.visitorId);
+      db.prepare("UPDATE job_matches SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(id, data.visitorId);
+      db.prepare("UPDATE feedback SET user_id = ? WHERE visitor_id = ? AND (user_id IS NULL OR user_id = '')").run(id, data.visitorId);
     } catch (e) {
       console.error('Error linking visitor activity to user:', e);
     }

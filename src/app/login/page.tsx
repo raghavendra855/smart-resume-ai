@@ -88,8 +88,8 @@ function LoginForm() {
     }
   }, [user, userLoading, safeFrom]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent | React.MouseEvent) => {
+    e?.preventDefault?.();
     if (isLoading) return;
     setError(null);
 
@@ -156,7 +156,7 @@ function LoginForm() {
             href="/"
             className="inline-flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-xl"
           >
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[var(--accent)] via-[#7C7FF2] to-[#9496FF] flex items-center justify-center text-white shadow-lg shadow-[var(--accent)]/25 group-hover:scale-105 transition-transform duration-200">
+            <div className="w-11 h-11 rounded-xl bg-[var(--accent)] flex items-center justify-center text-white shadow-md shadow-[var(--accent)]/20 group-hover:scale-105 transition-transform duration-200">
               <Sparkles className="w-5 h-5" />
             </div>
             <div className="flex flex-col leading-tight">
@@ -170,13 +170,13 @@ function LoginForm() {
           </Link>
 
           <div className="pt-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent)]/10 text-[var(--accent)] border border-[var(--accent)]/20 mb-3">
-              <ShieldCheck className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl text-xs font-semibold bg-[var(--bg-secondary)] text-[var(--text-secondary)] border border-[var(--border-color)] mb-3">
+              <ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)]" />
               <span>CAREER INTELLIGENCE PLATFORM</span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-[1.15]">
               Build a smarter career{' '}
-              <span className="bg-gradient-to-r from-[var(--accent)] via-[#9496FF] to-[#B4B6FF] bg-clip-text text-transparent">
+              <span className="text-[var(--accent)]">
                 with AI.
               </span>
             </h1>
@@ -268,7 +268,7 @@ function LoginForm() {
 
           {/* Mobile brand header (shown only when left hero is stacked) */}
           <div className="lg:hidden flex items-center justify-center gap-2.5 mb-6 pb-4 border-b border-[var(--border-color)]">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[var(--accent)] to-[#9496FF] flex items-center justify-center text-white shadow-sm">
+            <div className="w-8 h-8 rounded-lg bg-[var(--accent)] flex items-center justify-center text-white shadow-sm">
               <Sparkles className="w-4 h-4" />
             </div>
             <div className="flex flex-col text-left leading-tight">
@@ -304,7 +304,15 @@ function LoginForm() {
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form
+            action="javascript:void(0)"
+            method="POST"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(e);
+            }}
+            className="space-y-4"
+          >
             {/* Email Field */}
             <div>
               <label
@@ -385,6 +393,10 @@ function LoginForm() {
             {/* Submit Button */}
             <button
               type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                handleSubmit(e);
+              }}
               disabled={isLoading}
               className="w-full mt-2 py-3 px-4 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-md shadow-[var(--accent)]/20 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >

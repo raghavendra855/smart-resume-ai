@@ -144,12 +144,12 @@ export default async function UserDashboardPage() {
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Welcome Hero Banner */}
-      <div className="relative overflow-hidden rounded-2xl border border-[var(--border-color)] bg-gradient-to-r from-[var(--bg-secondary)] via-[var(--bg-card)] to-[var(--bg-secondary)] p-6 sm:p-8">
+      <div className="relative overflow-hidden rounded-2xl border border-[var(--border-color)] bg-[var(--bg-card)] p-6 sm:p-8">
         <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--accent)]/10 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-semibold border border-[var(--accent)]/20">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-xl bg-[var(--bg-secondary)] text-[var(--text-secondary)] text-xs font-semibold border border-[var(--border-color)]">
+              <Sparkles className="w-3.5 h-3.5 text-[var(--accent)]" />
               <span>Personal Career Intelligence</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[var(--text-primary)]">
@@ -163,7 +163,7 @@ export default async function UserDashboardPage() {
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <Link
               href="/analyzer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[var(--accent)] to-[#7C7FF2] text-white text-xs font-semibold hover:opacity-95 transition-all shadow-md shadow-[var(--accent)]/20"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-xs font-semibold transition-all shadow-sm"
             >
               <FileSearch className="w-4 h-4" />
               <span>Analyze Resume</span>
@@ -304,7 +304,7 @@ export default async function UserDashboardPage() {
                           Before
                         </span>
                         <span className="text-sm font-bold text-[var(--text-secondary)]">
-                          {r.previousScore !== null ? `${r.previousScore}` : '—'}
+                          {r.previousScore !== null ? `${r.previousScore}` : '-'}
                         </span>
                       </div>
                       <div className="text-sm font-bold text-[var(--text-secondary)]">→</div>

@@ -22,21 +22,34 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('dark');
   const [mounted, setMounted] = useState(false);
 
-  // Apply theme classes and attributes directly to document.documentElement
+  // Apply theme classes and attributes directly to document.documentElement and document.body
   const applyThemeToDom = useCallback((targetTheme: 'light' | 'dark') => {
     if (typeof document === 'undefined') return;
     const root = document.documentElement;
+    const body = document.body;
 
     if (targetTheme === 'light') {
       root.classList.remove('dark');
       root.classList.add('light');
       root.setAttribute('data-theme', 'light');
       root.style.colorScheme = 'light';
+      if (body) {
+        body.classList.remove('dark');
+        body.classList.add('light');
+        body.setAttribute('data-theme', 'light');
+        body.style.colorScheme = 'light';
+      }
     } else {
       root.classList.remove('light');
       root.classList.add('dark');
       root.setAttribute('data-theme', 'dark');
       root.style.colorScheme = 'dark';
+      if (body) {
+        body.classList.remove('light');
+        body.classList.add('dark');
+        body.setAttribute('data-theme', 'dark');
+        body.style.colorScheme = 'dark';
+      }
     }
   }, []);
 

@@ -4,6 +4,8 @@ import { verifySessionToken } from '@/lib/db';
 import { AdminSidebar } from '@/components/admin/AdminSidebar';
 import { AdminHeader } from '@/components/admin/AdminHeader';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminProtectedLayout({
   children,
 }: {

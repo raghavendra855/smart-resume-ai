@@ -183,7 +183,7 @@ export const YOUTUBE_ROADMAPS: Record<SupportedSkill, SkillLearningRoadmap> = {
       'Context API & Component Composition',
     ],
     retakeExamTips: [
-      'Never mutate state directly — always return new object/array copies.',
+      'Never mutate state directly; always return new object/array copies.',
       'Understand why unique keys are mandatory for list items.',
       'Avoid stale closure bugs inside useEffect dependency arrays.',
     ],

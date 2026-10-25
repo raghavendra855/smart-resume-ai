@@ -148,7 +148,7 @@ export function CompactOnePageTemplate({
                 <div key={exp.id} className="resume-entry">
                   <div className="flex justify-between items-baseline font-bold text-slate-900">
                     <span className={isMiniPreview ? 'text-[7px]' : 'text-[13.5px]'}>
-                      {exp.role} — <span className="font-semibold text-slate-700">{exp.company}</span>
+                      {exp.role} - <span className="font-semibold text-slate-700">{exp.company}</span>
                     </span>
                     <span className={`font-normal text-slate-600 ${isMiniPreview ? 'text-[6px]' : 'text-[11.5px]'}`}>
                       {exp.startDate} – {exp.current ? 'Present' : exp.endDate}

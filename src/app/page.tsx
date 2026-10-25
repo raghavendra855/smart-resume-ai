@@ -134,22 +134,21 @@ export default function LandingPage() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-[var(--bg-primary)]">
       {/* Ambient background glows */}
-      <div className="ambient-glow -top-40 -left-40 w-[600px] h-[600px] bg-[var(--accent)] opacity-20" />
-      <div className="ambient-glow top-[30%] -right-40 w-[500px] h-[500px] bg-indigo-500 opacity-15" />
-      <div className="ambient-glow bottom-20 left-1/4 w-[600px] h-[600px] bg-purple-600 opacity-10" />
+      <div className="ambient-glow -top-40 -left-40 w-[600px] h-[600px] bg-[var(--accent)] opacity-10" />
+      <div className="ambient-glow top-[30%] -right-40 w-[500px] h-[500px] bg-slate-500 opacity-10" />
 
       {/* Hero Section */}
       <section className="relative pt-16 pb-20 md:pt-24 md:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex flex-col items-center text-center">
         {/* Pill Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-semibold mb-6 shadow-sm">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-card)] text-[var(--text-secondary)] text-xs font-semibold mb-6 shadow-sm">
           <Sparkles className="w-3.5 h-3.5 text-[var(--accent)]" />
-          <span>Next-Generation Career Intelligence Platform</span>
+          <span>Resume Intelligence Platform</span>
         </div>
 
         {/* Main Headline */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[var(--text-primary)] max-w-5xl leading-[1.1] mb-6">
           Turn Your Resume Into Your{' '}
-          <span className="bg-gradient-to-r from-[var(--accent)] via-[#818CF8] to-indigo-400 bg-clip-text text-transparent">
+          <span className="text-[var(--accent)]">
             Next Opportunity.
           </span>
         </h1>
@@ -632,6 +631,12 @@ export default function LandingPage() {
             </Link>
             <Link href="/feedback" className="hover:text-[var(--text-primary)] transition-colors">
               Feedback
+            </Link>
+            <Link href="/privacy" className="hover:text-[var(--text-primary)] transition-colors">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-[var(--text-primary)] transition-colors">
+              Terms
             </Link>
           </div>
         </div>

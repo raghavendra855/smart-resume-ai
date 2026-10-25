@@ -134,7 +134,7 @@ export function ExperiencedProfessionalTemplate({
                 <div key={exp.id} className="resume-entry">
                   <div className="flex justify-between items-baseline">
                     <span className={`font-bold text-slate-950 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>
-                      {exp.role} — <span className="font-semibold text-slate-700">{exp.company}</span>
+                      {exp.role} - <span className="font-semibold text-slate-700">{exp.company}</span>
                     </span>
                     <span className={`font-medium text-slate-600 ${isMiniPreview ? 'text-[6px]' : 'text-[12px]'}`}>
                       {exp.startDate} – {exp.current ? 'Present' : exp.endDate}
@@ -243,7 +243,7 @@ export function ExperiencedProfessionalTemplate({
                 <div key={edu.id} className="resume-entry flex justify-between items-baseline">
                   <div>
                     <span className={`font-bold text-slate-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>{edu.degree}</span>
-                    <span className={`text-slate-700 ${isMiniPreview ? 'text-[6.5px]' : 'text-[12.5px]'}`}> — {edu.institution}</span>
+                    <span className={`text-slate-700 ${isMiniPreview ? 'text-[6.5px]' : 'text-[12.5px]'}`}>, {edu.institution}</span>
                     {edu.honors && (
                       <span className={`text-slate-600 italic ml-1 ${isMiniPreview ? 'text-[6px]' : 'text-[12px]'}`}>({edu.honors})</span>
                     )}

@@ -333,7 +333,7 @@ export default function CareerGuidancePage() {
                           {isVerified
                             ? `Verified Credential (Score: ${match?.score || 85}%)`
                             : isClaimed
-                            ? 'Claimed in profile — Needs Proctored Assessment'
+                            ? 'Claimed in profile - Needs Proctored Assessment'
                             : 'Missing from profile'}
                         </p>
                       </div>

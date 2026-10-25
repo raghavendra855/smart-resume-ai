@@ -88,8 +88,8 @@ function RegisterForm() {
     }
   }, [user, userLoading, safeFrom]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent | React.MouseEvent) => {
+    e?.preventDefault?.();
     if (isLoading) return;
     setError(null);
 
@@ -173,7 +173,7 @@ function RegisterForm() {
             href="/"
             className="inline-flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-xl"
           >
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-[var(--accent)] via-[#7C7FF2] to-[#9496FF] flex items-center justify-center text-white shadow-lg shadow-[var(--accent)]/25 group-hover:scale-105 transition-transform duration-200">
+            <div className="w-11 h-11 rounded-xl bg-[var(--accent)] flex items-center justify-center text-white shadow-md shadow-[var(--accent)]/20 group-hover:scale-105 transition-transform duration-200">
               <Sparkles className="w-5 h-5" />
             </div>
             <div className="flex flex-col leading-tight">
@@ -187,13 +187,13 @@ function RegisterForm() {
           </Link>
 
           <div className="pt-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-[var(--accent)]/10 text-[var(--accent)] border border-[var(--accent)]/20 mb-3">
-              <ShieldCheck className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-xl text-xs font-semibold bg-[var(--bg-secondary)] text-[var(--text-secondary)] border border-[var(--border-color)] mb-3">
+              <ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)]" />
               <span>CAREER INTELLIGENCE PLATFORM</span>
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[var(--text-primary)] leading-[1.15]">
               Start building your{' '}
-              <span className="bg-gradient-to-r from-[var(--accent)] via-[#9496FF] to-[#B4B6FF] bg-clip-text text-transparent">
+              <span className="text-[var(--accent)]">
                 smarter career.
               </span>
             </h1>
@@ -267,7 +267,7 @@ function RegisterForm() {
 
           {/* Mobile brand header */}
           <div className="lg:hidden flex items-center justify-center gap-2.5 mb-6 pb-4 border-b border-[var(--border-color)]">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[var(--accent)] to-[#9496FF] flex items-center justify-center text-white shadow-sm">
+            <div className="w-8 h-8 rounded-lg bg-[var(--accent)] flex items-center justify-center text-white shadow-sm">
               <Sparkles className="w-4 h-4" />
             </div>
             <div className="flex flex-col text-left leading-tight">
@@ -303,7 +303,15 @@ function RegisterForm() {
           )}
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form
+            action="javascript:void(0)"
+            method="POST"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(e);
+            }}
+            className="space-y-4"
+          >
             {/* Full Name */}
             <div>
               <label
@@ -443,8 +451,12 @@ function RegisterForm() {
             {/* Submit Button */}
             <button
               type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                handleSubmit(e);
+              }}
               disabled={isLoading}
-              className="w-full mt-2 py-3 px-4 rounded-xl bg-gradient-to-r from-[var(--accent)] via-[#7C7FF2] to-[#9496FF] hover:opacity-95 text-white font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-[var(--accent)]/20 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              className="w-full mt-2 py-3 px-4 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-md shadow-[var(--accent)]/20 active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               {isLoading ? (
                 <>
@@ -513,9 +525,9 @@ export default function RegisterPage() {
         }}
       />
 
-      {/* Decorative Ambient Radial Glow Orbs */}
-      <div className="w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[var(--accent)]/15 via-[#7C7FF2]/10 to-transparent blur-3xl pointer-events-none absolute -top-40 -left-40" />
-      <div className="w-[450px] h-[450px] rounded-full bg-[var(--accent)]/10 blur-3xl pointer-events-none absolute -bottom-20 -right-20" />
+      {/* Decorative Ambient Glow Orbs */}
+      <div className="w-[500px] h-[500px] rounded-full bg-[var(--accent)]/10 blur-3xl pointer-events-none absolute -top-40 -left-40" />
+      <div className="w-[450px] h-[450px] rounded-full bg-slate-500/10 blur-3xl pointer-events-none absolute -bottom-20 -right-20" />
 
       <Suspense
         fallback={

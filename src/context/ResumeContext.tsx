@@ -7,12 +7,7 @@ import {
   ImprovementItem,
   ResumeTemplateId,
 } from '@/types/resume';
-import {
-  INITIAL_RESUME_DATA,
-  SAMPLE_EXPERIENCED_RESUME,
-  INITIAL_ANALYSIS_RESULT,
-  INITIAL_IMPROVEMENTS,
-} from '@/lib/mockData';
+import { INITIAL_RESUME_DATA } from '@/lib/initialData';
 
 interface ResumeContextType {
   resumeData: ResumeData;
@@ -291,8 +286,13 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const resetToSampleResume = () => {
-    setResumeData(SAMPLE_EXPERIENCED_RESUME);
+  const resetToSampleResume = async () => {
+    try {
+      const { SAMPLE_EXPERIENCED_RESUME } = await import('@/lib/sampleResume');
+      setResumeData(SAMPLE_EXPERIENCED_RESUME);
+    } catch {
+      setResumeData(INITIAL_RESUME_DATA);
+    }
     setAnalysisResult(null);
     setImprovements([]);
   };

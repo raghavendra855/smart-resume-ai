@@ -64,11 +64,13 @@ export function A4ResumeDocument({
           ref={containerRef}
           id="resume-a4-document"
           data-testid="a4-resume-document"
-          className="relative a4-page bg-white text-slate-900 shadow-2xl transition-shadow select-text"
+          className="relative a4-page bg-white text-slate-900 shadow-2xl transition-shadow select-text flex flex-col flex-1"
           style={{
             width: `${A4_WIDTH_PX}px`,
             minHeight: `${A4_PAGE_HEIGHT_PX}px`,
             boxSizing: 'border-box',
+            display: 'flex',
+            flexDirection: 'column',
           }}
         >
           {/* Active Template Renderer */}

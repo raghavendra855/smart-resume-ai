@@ -1,3 +1,4 @@
+import 'server-only';
 import { JobSearchParams, JobSearchResponse, NormalizedJob } from './types';
 import { getConfiguredProviders } from './providers';
 import { deduplicateJobs } from './dedupe';

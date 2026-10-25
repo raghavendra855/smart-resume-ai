@@ -6,11 +6,6 @@ import {
   hasContactInfo,
   formatUrl,
   cleanDomain,
-  hasSkillsData,
-  hasExperienceData,
-  hasEducationData,
-  hasProjectsData,
-  hasCertificationsData,
   LinkedinIcon,
 } from './templateUtils';
 import { Mail, Phone, MapPin, Globe, Home } from 'lucide-react';
@@ -22,8 +17,7 @@ export function ThomasHamptoneTemplate({
   data: ResumeData;
   isMiniPreview?: boolean;
 }) {
-  const { personalInfo, summary, skills, experience, education, projects, certifications, candidateType } = data;
-  const isFresher = candidateType === 'fresher';
+  const { personalInfo, summary, skills, experience, education, projects, certifications } = data;
 
   const validExp = (experience || []).filter((e) => e.role?.trim() || e.company?.trim());
   const validEdu = (education || []).filter((e) => e.degree?.trim() || e.institution?.trim());
@@ -44,24 +38,24 @@ export function ThomasHamptoneTemplate({
 
   return (
     <div
-      className={`w-full bg-white text-neutral-800 select-text leading-normal ${
-        isMiniPreview ? 'text-[7px] leading-tight p-4' : 'text-[13px] p-8 sm:p-10'
+      className={`w-full bg-white text-neutral-800 select-text leading-normal flex-1 flex flex-col min-h-full ${
+        isMiniPreview ? 'text-[7px] leading-tight p-4' : 'text-[14px] p-8 sm:p-10'
       }`}
       style={{ fontFamily: '"Playfair Display", Georgia, "Times New Roman", serif' }}
     >
       {/* HEADER: Editorial Serif Name + Headline + Top-Right Circular Photo */}
-      <header className={`flex justify-between items-center border-b border-neutral-300 pb-5 mb-5 ${isMiniPreview ? 'pb-2 mb-2' : ''}`}>
-        <div className="flex-1 pr-4">
+      <header className={`flex justify-between items-center border-b border-neutral-300 pb-5 mb-6 shrink-0 ${isMiniPreview ? 'pb-2 mb-2' : ''}`}>
+        <div className="flex-1 pr-4 min-w-0">
           <p
             className={`font-sans uppercase tracking-[0.25em] text-neutral-500 font-semibold mb-1 ${
-              isMiniPreview ? 'text-[6px]' : 'text-xs'
+              isMiniPreview ? 'text-[6px]' : 'text-[13px]'
             }`}
           >
             {personalInfo.headline || 'PROJECT MANAGER'}
           </p>
           <h1
-            className={`font-serif tracking-wider uppercase text-neutral-900 leading-tight font-normal ${
-              isMiniPreview ? 'text-[12px]' : 'text-3xl sm:text-4xl'
+            className={`font-serif tracking-wider uppercase text-neutral-900 leading-tight font-normal break-words ${
+              isMiniPreview ? 'text-[12px]' : 'text-3xl sm:text-[34px]'
             }`}
             style={{ letterSpacing: '0.08em' }}
           >
@@ -87,48 +81,48 @@ export function ThomasHamptoneTemplate({
       </header>
 
       {/* TWO-COLUMN BODY DIVIDED BY VERTICAL HAIRLINE */}
-      <div className="grid grid-cols-12 gap-0">
+      <div className="grid grid-cols-12 gap-0 flex-1 min-h-0">
         {/* LEFT COLUMN: ~34% (CONTACT, SKILLS, LANGUAGES/CERTS) */}
-        <div className={`col-span-4 pr-5 sm:pr-6 border-r border-neutral-200 ${isMiniPreview ? 'pr-2' : ''}`}>
+        <div className={`col-span-4 pr-6 sm:pr-7 border-r border-neutral-300 min-w-0 flex flex-col ${isMiniPreview ? 'pr-2 border-r-0' : ''}`}>
           {/* CONTACT */}
           {hasContactInfo(personalInfo) && (
-            <section className="mb-5 resume-section">
+            <section className="mb-6 resume-section">
               <h2
-                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-2.5 ${
-                  isMiniPreview ? 'text-[7px]' : 'text-[14px]'
+                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-3 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7px]' : 'text-[16px]'
                 }`}
               >
                 CONTACT
               </h2>
-              <div className={`space-y-2 font-sans text-neutral-600 ${isMiniPreview ? 'space-y-1 text-[6px]' : 'text-[12.5px]'}`}>
+              <div className={`space-y-2.5 font-sans text-neutral-700 ${isMiniPreview ? 'space-y-1 text-[6px]' : 'text-[13px]'}`}>
                 {personalInfo.location && (
                   <div className="flex items-start gap-2">
-                    <Home className={`shrink-0 text-neutral-500 mt-0.5 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
-                    <span className="break-words">{personalInfo.location}</span>
+                    <Home className={`shrink-0 text-neutral-500 mt-0.5 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
+                    <span className="break-words [overflow-wrap:anywhere] min-w-0">{personalInfo.location}</span>
                   </div>
                 )}
                 {personalInfo.phone && (
                   <div className="flex items-center gap-2">
-                    <Phone className={`shrink-0 text-neutral-500 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
-                    <span>{personalInfo.phone}</span>
+                    <Phone className={`shrink-0 text-neutral-500 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
+                    <span className="break-words [overflow-wrap:anywhere] min-w-0">{personalInfo.phone}</span>
                   </div>
                 )}
                 {personalInfo.email && (
                   <div className="flex items-center gap-2">
-                    <Mail className={`shrink-0 text-neutral-500 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
-                    <a href={`mailto:${personalInfo.email}`} className="break-all hover:text-black">
+                    <Mail className={`shrink-0 text-neutral-500 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
+                    <a href={`mailto:${personalInfo.email}`} className="break-all [overflow-wrap:anywhere] min-w-0 hover:text-black">
                       {personalInfo.email}
                     </a>
                   </div>
                 )}
                 {personalInfo.linkedin && (
                   <div className="flex items-center gap-2">
-                    <LinkedinIcon className={`shrink-0 text-neutral-500 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                    <LinkedinIcon className={`shrink-0 text-neutral-500 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                     <a
                       href={formatUrl(personalInfo.linkedin)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="break-all hover:text-black"
+                      className="break-all [overflow-wrap:anywhere] min-w-0 hover:text-black"
                     >
                       {cleanDomain(personalInfo.linkedin)}
                     </a>
@@ -136,12 +130,12 @@ export function ThomasHamptoneTemplate({
                 )}
                 {personalInfo.portfolio && (
                   <div className="flex items-center gap-2">
-                    <Globe className={`shrink-0 text-neutral-500 ${isMiniPreview ? 'w-2 h-2' : 'w-3.5 h-3.5'}`} />
+                    <Globe className={`shrink-0 text-neutral-500 ${isMiniPreview ? 'w-2 h-2' : 'w-4 h-4'}`} />
                     <a
                       href={formatUrl(personalInfo.portfolio)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="break-all hover:text-black"
+                      className="break-all [overflow-wrap:anywhere] min-w-0 hover:text-black"
                     >
                       {cleanDomain(personalInfo.portfolio)}
                     </a>
@@ -151,50 +145,46 @@ export function ThomasHamptoneTemplate({
             </section>
           )}
 
-          {/* DIVIDER */}
-          {allSkills.length > 0 && <div className="border-b border-neutral-200 my-4" />}
-
           {/* SKILLS */}
           {allSkills.length > 0 && (
-            <section className="mb-5 resume-section">
+            <section className="mb-6 resume-section">
               <h2
-                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-2.5 ${
-                  isMiniPreview ? 'text-[7px]' : 'text-[14px]'
+                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-3 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7px]' : 'text-[16px]'
                 }`}
               >
                 SKILLS
               </h2>
-              <ul className={`space-y-1.5 font-sans text-neutral-700 ${isMiniPreview ? 'space-y-0.5 text-[6px]' : 'text-[12.5px]'}`}>
+              <ul className={`space-y-2 font-sans text-neutral-800 ${isMiniPreview ? 'space-y-0.5 text-[6px]' : 'text-[13.5px]'}`}>
                 {allSkills.map((s, idx) => (
-                  <li key={idx} className="flex items-start gap-1.5">
-                    <span className="text-neutral-400 mt-0.5">•</span>
-                    <span>{s}</span>
+                  <li key={idx} className="flex items-start gap-2">
+                    <span className="text-neutral-500 font-bold mt-0.5">•</span>
+                    <span className="break-words [overflow-wrap:anywhere] min-w-0">{s}</span>
                   </li>
                 ))}
               </ul>
             </section>
           )}
 
-          {/* DIVIDER */}
-          {validCerts.length > 0 && <div className="border-b border-neutral-200 my-4" />}
-
           {/* CERTIFICATIONS / LANGUAGES */}
           {validCerts.length > 0 && (
-            <section className="mb-4 resume-section">
+            <section className="mb-6 resume-section">
               <h2
-                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-2.5 ${
-                  isMiniPreview ? 'text-[7px]' : 'text-[14px]'
+                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-3 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7px]' : 'text-[16px]'
                 }`}
               >
                 CERTIFICATIONS
               </h2>
-              <ul className={`space-y-2 font-sans text-neutral-700 ${isMiniPreview ? 'space-y-0.5 text-[6px]' : 'text-[12.5px]'}`}>
+              <ul className={`space-y-2.5 font-sans text-neutral-800 ${isMiniPreview ? 'space-y-0.5 text-[6px]' : 'text-[13px]'}`}>
                 {validCerts.map((c) => (
-                  <li key={c.id} className="flex items-start gap-1.5 resume-entry">
-                    <span className="text-neutral-400 mt-0.5">•</span>
-                    <div>
-                      <p className="font-semibold text-neutral-800">{c.name}</p>
-                      <p className={`text-neutral-500 ${isMiniPreview ? 'text-[5.5px]' : 'text-[11.5px]'}`}>{c.issuer} {c.date ? `| ${c.date}` : ''}</p>
+                  <li key={c.id} className="flex items-start gap-2 resume-entry">
+                    <span className="text-neutral-500 font-bold mt-0.5">•</span>
+                    <div className="min-w-0">
+                      <p className="font-semibold text-neutral-900 break-words">{c.name}</p>
+                      <p className={`text-neutral-500 ${isMiniPreview ? 'text-[5.5px]' : 'text-[12px]'}`}>
+                        {c.issuer} {c.date ? `| ${c.date}` : ''}
+                      </p>
                     </div>
                   </li>
                 ))}
@@ -204,43 +194,40 @@ export function ThomasHamptoneTemplate({
         </div>
 
         {/* RIGHT COLUMN: ~66% (SUMMARY, EXPERIENCE, EDUCATION, PROJECTS) */}
-        <div className={`col-span-8 pl-5 sm:pl-6 ${isMiniPreview ? 'pl-2' : ''}`}>
+        <div className={`col-span-8 pl-6 sm:pl-7 min-w-0 flex flex-col ${isMiniPreview ? 'pl-2' : ''}`}>
           {/* SUMMARY */}
           {summary && (
-            <section className="mb-5 resume-section">
+            <section className="mb-6 resume-section">
               <h2
-                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-2 ${
-                  isMiniPreview ? 'text-[7px]' : 'text-[14px]'
+                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-3 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7px]' : 'text-[16px]'
                 }`}
               >
                 SUMMARY
               </h2>
-              <p className={`font-sans text-neutral-600 leading-relaxed ${isMiniPreview ? 'text-[6px]' : 'text-[13px]'}`}>
+              <p className={`font-sans text-neutral-700 leading-[1.65] text-justify break-words [overflow-wrap:anywhere] ${isMiniPreview ? 'text-[6px]' : 'text-[14px]'}`}>
                 {summary}
               </p>
             </section>
           )}
 
-          {/* DIVIDER */}
-          {(validExp.length > 0 || validProj.length > 0) && summary && <div className="border-b border-neutral-200 my-4" />}
-
           {/* WORK EXPERIENCE */}
           {validExp.length > 0 && (
-            <section className="mb-5 resume-section">
+            <section className="mb-6 resume-section">
               <h2
-                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-3 ${
-                  isMiniPreview ? 'text-[7px]' : 'text-[14px]'
+                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-3.5 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7px]' : 'text-[16px]'
                 }`}
               >
                 WORK EXPERIENCE
               </h2>
               <div className="space-y-4">
                 {validExp.map((exp) => (
-                  <div key={exp.id} className="font-sans resume-entry">
-                    <h3 className={`font-bold uppercase tracking-wide text-neutral-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>
+                  <div key={exp.id} className="font-sans resume-entry min-w-0">
+                    <h3 className={`font-bold uppercase tracking-wide text-neutral-900 break-words ${isMiniPreview ? 'text-[7px]' : 'text-[15.5px]'}`}>
                       {exp.role}
                     </h3>
-                    <p className={`text-neutral-700 font-semibold mt-0.5 mb-1.5 ${isMiniPreview ? 'text-[6px]' : 'text-[12.5px]'}`}>
+                    <p className={`text-neutral-700 font-semibold mt-0.5 mb-2 break-words ${isMiniPreview ? 'text-[6px]' : 'text-[13.5px]'}`}>
                       <span>{exp.company}</span>
                       {exp.location && <span> . {exp.location}</span>}
                       {(exp.startDate || exp.endDate) && (
@@ -250,11 +237,11 @@ export function ThomasHamptoneTemplate({
                       )}
                     </p>
                     {exp.bulletPoints && exp.bulletPoints.length > 0 && (
-                      <ul className={`space-y-1 text-neutral-600 ${isMiniPreview ? 'text-[5.5px]' : 'text-[13px]'}`}>
+                      <ul className={`space-y-1.5 text-neutral-700 ${isMiniPreview ? 'text-[5.5px]' : 'text-[14px]'}`}>
                         {exp.bulletPoints.map((bp, bIdx) => (
-                          <li key={bIdx} className="flex items-start gap-1.5 leading-relaxed">
-                            <span className="text-neutral-400 mt-0.5">•</span>
-                            <span>{bp}</span>
+                          <li key={bIdx} className="flex items-start gap-2 leading-[1.6]">
+                            <span className="text-neutral-400 mt-1 shrink-0">•</span>
+                            <span className="break-words [overflow-wrap:anywhere] min-w-0">{bp}</span>
                           </li>
                         ))}
                       </ul>
@@ -265,32 +252,29 @@ export function ThomasHamptoneTemplate({
             </section>
           )}
 
-          {/* DIVIDER */}
-          {validEdu.length > 0 && (validExp.length > 0 || summary) && <div className="border-b border-neutral-200 my-4" />}
-
           {/* EDUCATION */}
           {validEdu.length > 0 && (
-            <section className="mb-5 resume-section">
+            <section className="mb-6 resume-section">
               <h2
-                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-3 ${
-                  isMiniPreview ? 'text-[7px]' : 'text-[14px]'
+                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-3.5 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7px]' : 'text-[16px]'
                 }`}
               >
                 EDUCATION
               </h2>
-              <div className="space-y-3 font-sans">
+              <div className="space-y-3.5 font-sans">
                 {validEdu.map((edu) => (
-                  <div key={edu.id} className="resume-entry">
-                    <h3 className={`font-bold uppercase tracking-wide text-neutral-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>
+                  <div key={edu.id} className="resume-entry min-w-0">
+                    <h3 className={`font-bold uppercase tracking-wide text-neutral-900 break-words ${isMiniPreview ? 'text-[7px]' : 'text-[15.5px]'}`}>
                       {edu.degree}
                     </h3>
-                    <p className={`text-neutral-600 mt-0.5 ${isMiniPreview ? 'text-[6px]' : 'text-[12.5px]'}`}>
+                    <p className={`text-neutral-700 mt-0.5 break-words ${isMiniPreview ? 'text-[6px]' : 'text-[13.5px]'}`}>
                       <span>{edu.institution}</span>
                       {edu.location && <span> . {edu.location}</span>}
                       {edu.graduationYear && <span> . | {edu.graduationYear}</span>}
                     </p>
                     {edu.gpa && (
-                      <p className={`text-neutral-500 italic mt-0.5 ${isMiniPreview ? 'text-[5.5px]' : 'text-[12px]'}`}>
+                      <p className={`text-neutral-500 italic mt-0.5 ${isMiniPreview ? 'text-[5.5px]' : 'text-[12.5px]'}`}>
                         GPA: {edu.gpa}
                       </p>
                     )}
@@ -302,35 +286,32 @@ export function ThomasHamptoneTemplate({
 
           {/* PROJECTS */}
           {validProj.length > 0 && (
-            <>
-              <div className="border-b border-neutral-200 my-4" />
-              <section className="mb-4 resume-section">
-                <h2
-                  className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-3 ${
-                    isMiniPreview ? 'text-[7px]' : 'text-[14px]'
-                  }`}
-                >
-                  PROJECTS
-                </h2>
-                <div className="space-y-3 font-sans">
-                  {validProj.map((proj) => (
-                    <div key={proj.id} className="resume-entry">
-                      <h3 className={`font-bold uppercase tracking-wide text-neutral-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>
-                        {proj.title}
-                      </h3>
-                      {proj.technologies && proj.technologies.length > 0 && (
-                        <p className={`text-neutral-500 mb-1 ${isMiniPreview ? 'text-[5.5px]' : 'text-[12px]'}`}>
-                          Tech: {proj.technologies.join(', ')}
-                        </p>
-                      )}
-                      <p className={`text-neutral-600 leading-relaxed ${isMiniPreview ? 'text-[6px]' : 'text-[13px]'}`}>
-                        {proj.description}
+            <section className="mb-5 resume-section">
+              <h2
+                className={`font-serif font-bold uppercase tracking-[0.2em] text-neutral-900 pb-1 mb-3.5 border-b border-neutral-200 ${
+                  isMiniPreview ? 'text-[7px]' : 'text-[16px]'
+                }`}
+              >
+                PROJECTS
+              </h2>
+              <div className="space-y-3.5 font-sans">
+                {validProj.map((proj) => (
+                  <div key={proj.id} className="resume-entry min-w-0">
+                    <h3 className={`font-bold uppercase tracking-wide text-neutral-900 break-words ${isMiniPreview ? 'text-[7px]' : 'text-[15.5px]'}`}>
+                      {proj.title}
+                    </h3>
+                    {proj.technologies && proj.technologies.length > 0 && (
+                      <p className={`text-neutral-500 mb-1 break-words ${isMiniPreview ? 'text-[5.5px]' : 'text-[12.5px]'}`}>
+                        Tech: {proj.technologies.join(', ')}
                       </p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            </>
+                    )}
+                    <p className={`text-neutral-700 leading-[1.6] break-words [overflow-wrap:anywhere] min-w-0 ${isMiniPreview ? 'text-[6px]' : 'text-[14px]'}`}>
+                      {proj.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </section>
           )}
         </div>
       </div>

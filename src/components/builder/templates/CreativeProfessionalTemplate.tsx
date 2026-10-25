@@ -253,7 +253,7 @@ export function CreativeProfessionalTemplate({
                 <div key={edu.id} className="resume-entry flex justify-between items-baseline">
                   <div>
                     <span className={`font-bold text-slate-900 ${isMiniPreview ? 'text-[7px]' : 'text-[14px]'}`}>{edu.degree}</span>
-                    <span className={`text-slate-600 ${isMiniPreview ? 'text-[6.5px]' : 'text-[12.5px]'}`}> — {edu.institution}</span>
+                    <span className={`text-slate-600 ${isMiniPreview ? 'text-[6.5px]' : 'text-[12.5px]'}`}>, {edu.institution}</span>
                   </div>
                   <span className={`text-slate-500 font-medium ${isMiniPreview ? 'text-[6px]' : 'text-[12px]'}`}>{edu.graduationYear}</span>
                 </div>

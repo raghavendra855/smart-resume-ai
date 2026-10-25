@@ -27,8 +27,8 @@ function AdminLoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.FormEvent | React.MouseEvent) => {
+    e?.preventDefault?.();
     setError(null);
 
     const cleanEmail = email.trim();
@@ -69,13 +69,13 @@ function AdminLoginForm() {
 
       {/* Brand Header */}
       <div className="text-center mb-8">
-        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-tr from-[var(--accent)] via-[#6366f1] to-[#818cf8] text-white shadow-xl shadow-[var(--glow-color)] mb-4">
+        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[var(--accent)] text-white shadow-md shadow-[var(--accent)]/20 mb-4">
           <ShieldCheck className="w-7 h-7" />
         </div>
 
         <div className="flex items-center justify-center gap-1.5 mb-2">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-extrabold tracking-wider uppercase bg-[var(--accent)]/15 text-[var(--accent)] border border-[var(--accent)]/30">
-            <Sparkles className="w-3 h-3" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl text-[11px] font-extrabold tracking-wider uppercase bg-[var(--bg-secondary)] text-[var(--text-secondary)] border border-[var(--border-color)]">
+            <Sparkles className="w-3 h-3 text-[var(--accent)]" />
             Smart Resume AI
           </span>
         </div>
@@ -106,7 +106,15 @@ function AdminLoginForm() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form
+          action="javascript:void(0)"
+          method="POST"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(e);
+          }}
+          className="space-y-4"
+        >
           {/* Email Field */}
           <div>
             <label
@@ -174,6 +182,10 @@ function AdminLoginForm() {
           {/* Submit Button */}
           <button
             type="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              handleSubmit(e);
+            }}
             disabled={isLoading}
             className="w-full mt-3 py-3 px-4 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white text-sm font-bold shadow-lg shadow-[var(--glow-color)] transition-all flex items-center justify-center gap-2 active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed hover:shadow-xl"
           >
